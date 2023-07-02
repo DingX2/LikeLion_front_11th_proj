@@ -1,7 +1,9 @@
-$height: 300px;
+$height: 400px;
 
 .menu-grid-wrapper {
     height: $height;
+
+    padding: 50px 0px;
 
     display: flex;
     flex-direction: column;
@@ -14,17 +16,25 @@ $height: 300px;
 .menu-grid-container {
     height: 50%;
 
+    margin: 10px 0px;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-    background-color: aqua;
 }
 
 .menu-grid-item {
     display: block;
     width: 20%;
-    height: 80%;
 
-    background-color: beige;
+    img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
 }
