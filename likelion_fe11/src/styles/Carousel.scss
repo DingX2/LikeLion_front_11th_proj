@@ -1,5 +1,8 @@
+$carousel-height: 500px;
+
 .carousel-wrapper {
-    height: 400px;
+    height: $carousel-height;
+    position: relative;
 }
 
 .carousel-container {
@@ -7,6 +10,8 @@
     overflow: hidden;
     position: relative;
     display: flex;
+
+    transition: all 0.5s ease-in-out;
 }
 
 .carousel-item {
@@ -19,34 +24,36 @@
     }
 }
 
-// .carousel-controller {
-//     width: 100vw;
-//     height: 100%;
-//     position: absolute;
+.carousel-controller {
+    width: 100vw;
+    height: $carousel-height;
 
-//     button {
-//         position: relative;
-//         display: block;
-//         height: 100%;
-//         width: 80px;
+    position: absolute;
+    top: 0;
 
-//         border: 0;
-//         background: none;
+    svg {
+        font-size: 2rem;
+    }
 
-//         &:nth-child(1) {
-//             position: absolute;
-//             left: 0;
-//         }
-//         &:nth-child(2) {
-//             position: absolute;
-//             right: 0;
-//         }
-//         &:hover {
-//             cursor: pointer;
-//         }
-//     }
+    button {
+        position: relative;
+        display: block;
+        height: 100%;
+        width: 80px;
 
-//     svg {
-//         font-size: 3rem;
-//     }
-// }
+        border: 0;
+        background: none;
+
+        &:nth-child(1) {
+            position: absolute;
+            left: 0;
+        }
+        &:nth-child(2) {
+            position: absolute;
+            right: 0;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

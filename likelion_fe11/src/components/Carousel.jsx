@@ -5,30 +5,44 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import "../styles/Carousel.scss";
 
 export default function Carousel({ carouselItems }) {
-    const carouselContainer = useRef();
-    const carouselLeftBtn = useRef();
-    const carouselRightBtn = useRef();
+    const containerRef = useRef();
+    const leftBtnRef = useRef();
+    const rightBtnRef = useRef();
+    let currentCarousel = 0;
 
-    const onLeftBtnClicked = (e) => {
+    const onLeftBtnClick = (e) => {
         e.preventDefault();
-
-        carouselContainer.current.style.transform = "translateX(100vw)";
+        currentCarousel = currentCarousel == 0 ? carouselItems.length - 1 : currentCarousel - 1;
+        containerRef.current.style.transform = `translateX(${-100 * currentCarousel}vw)`;
     };
 
-    const onRightBtnClicked = (e) => {
+    const onRightBtnClick = (e) => {
         e.preventDefault();
+        currentCarousel = currentCarousel == carouselItems.length - 1 ? 0 : currentCarousel + 1;
+        containerRef.current.style.transform = `translateX(${-100 * currentCarousel}vw)`;
+    };
 
-        carouselContainer.current.style.transform = "translateX(-100vw)";
+    const CarouselAnimation = () => {
+        setInterval(() => {
+            currentCarousel = currentCarousel == carouselItems.length - 1 ? 0 : currentCarousel + 1;
+            containerRef.current.style.transform = `translateX(${-100 * currentCarousel}vw)`;
+        }, 5000);
     };
 
     useEffect(() => {
-        carouselLeftBtn.current.addEventListener("click", onLeftBtnClicked);
-        carouselRightBtn.current.addEventListener("click", onRightBtnClicked);
+        leftBtnRef.current.addEventListener("click", onLeftBtnClick);
+        rightBtnRef.current.addEventListener("click", onRightBtnClick);
+        CarouselAnimation();
+
+        return () => {
+            leftBtnRef.current.removeEventListener("click", onLeftBtnClick);
+            rightBtnRef.current.removeEventListener("click", onRightBtnClick);
+        };
     }, []);
 
     return (
         <div className="carousel-wrapper">
-            <div className="carousel-container" ref={carouselContainer} style={{ width: `${carouselItems.length * 100}vw` }}>
+            <div className="carousel-container" ref={containerRef} style={{ width: `${carouselItems.length * 100}vw` }}>
                 {carouselItems.map((item, index) => {
                     return (
                         <div className="carousel-item">
@@ -39,11 +53,11 @@ export default function Carousel({ carouselItems }) {
             </div>
 
             <div className="carousel-controller">
-                <button ref={carouselLeftBtn}>
+                <button ref={leftBtnRef}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </button>
 
-                <button ref={carouselRightBtn}>
+                <button ref={rightBtnRef}>
                     <FontAwesomeIcon icon={faChevronRight} />
                 </button>
             </div>

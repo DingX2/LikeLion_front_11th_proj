@@ -1,0 +1,30 @@
+$height: 300px;
+
+.menu-grid-wrapper {
+    height: $height;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: white;
+}
+
+.menu-grid-container {
+    height: 50%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: aqua;
+}
+
+.menu-grid-item {
+    display: block;
+    width: 20%;
+    height: 80%;
+
+    background-color: beige;
+}
