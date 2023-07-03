@@ -26,7 +26,7 @@ export default function NavBar() {
 
             <ul className="nav-middle container">
                 <li>
-                    <Link>KREAM</Link>
+                    <Link>WHPPING KREAM</Link>
                 </li>
                 <li style={{ flexGrow: 2 }} />
                 <li>
